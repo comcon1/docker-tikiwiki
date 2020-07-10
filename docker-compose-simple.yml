@@ -3,7 +3,7 @@ services:
   tiki:
     image: tikiwiki/tikiwiki:21.x
     ports:
-    - "80:80"
+      - "80:80"
     depends_on:
       - db
     environment:
@@ -19,6 +19,7 @@ services:
       - tiki_storage:/var/www/html/storage/
       - tiki_temp:/var/www/html/temp/
       - tiki_sessions:/var/www/sessions/
+    restart: unless-stopped
   db:
     image: mariadb
     environment:
@@ -29,6 +30,7 @@ services:
       - TERM=dumb
     volumes:
       - tiki_mysqldata:/var/lib/mysql
+    restart: unless-stopped
 volumes:
   tiki_files:
   tiki_img_trackers:
