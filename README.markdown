@@ -57,6 +57,15 @@ services:
       - TIKI_DB_USER=tiki
       - TIKI_DB_PASS=wiki
       - TIKI_DB_NAME=tikiwiki
+    volumes:
+      - tiki_files:/var/www/html/files/
+      - tiki_img_trackers:/var/www/html/img/trackers/
+      - tiki_img_wiki_up:/var/www/html/img/wiki_up/
+      - tiki_img_wiki:/var/www/html/img/wiki/
+      - tiki_modules_cache:/var/www/html/modules/cache/
+      - tiki_storage:/var/www/html/storage/
+      - tiki_temp:/var/www/html/temp/
+      - tiki_sessions:/var/www/sessions/
   db:
     image: mariadb
     environment:
@@ -65,6 +74,18 @@ services:
       - MYSQL_DATABASE=tikiwiki
       - MYSQL_ROOT_PASSWORD=tkwkiiii
       - TERM=dumb
+    volumes:
+      - tiki_mysqldata:/var/lib/mysql
+volumes:
+  tiki_files:
+  tiki_img_trackers:
+  tiki_img_wiki_up:
+  tiki_img_wiki:
+  tiki_modules_cache:
+  tiki_storage:
+  tiki_temp:
+  tiki_sessions:
+  tiki_mysqldata:
 ```
 
 ### scalable mode with docker-compose
@@ -127,6 +148,8 @@ services:
       - MYSQL_DATABASE=tikiwiki
       - MYSQL_ROOT_PASSWORD=tkwkiiii
       - TERM=dumb
+    volumes:
+      - tiki_mysqldata:/var/lib/mysql
 volumes:
   tiki_files:
   tiki_img_trackers:
@@ -136,6 +159,7 @@ volumes:
   tiki_storage:
   tiki_temp:
   tiki_sessions:
+  tiki_mysqldata:
 ```
 
 #### Starting containers

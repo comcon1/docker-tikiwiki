@@ -38,6 +38,8 @@ services:
       - MYSQL_DATABASE=tikiwiki
       - MYSQL_ROOT_PASSWORD=tkwkiiii
       - TERM=dumb
+    volumes:
+      - tiki_mysqldata:/var/lib/mysql
 volumes:
   tiki_files:
   tiki_img_trackers:
@@ -47,3 +49,4 @@ volumes:
   tiki_storage:
   tiki_temp:
   tiki_sessions:
+  tiki_mysqldata:
