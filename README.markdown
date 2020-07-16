@@ -41,7 +41,7 @@ docker run --rm --name tiki --link mariadb:db \
 
 The following creates and start two containers:
 
-1. TikiWiki with por 80 published on host
+1. TikiWiki with por 80/443 published on host
 2. MariaDB instance with the schema `tikiwiki`
 
 ```yml
@@ -51,6 +51,7 @@ services:
     image: tikiwiki/tikiwiki:21.x
     ports:
     - "80:80"
+    - "443:443"
     depends_on:
       - db
     environment:
@@ -87,6 +88,9 @@ volumes:
   tiki_sessions:
   tiki_mysqldata:
 ```
+
+To attach SSL properly, please consult `ssl/activate-ssl.sh` script. It modifies a created container
+uploading proper apache configs and self-signed certificates.
 
 ### scalable mode with docker-compose
 
